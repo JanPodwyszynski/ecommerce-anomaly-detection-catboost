@@ -34,7 +34,7 @@ class CategoryProbabilityExtractor:
             train_fold = dataset.iloc[train_idx]
             train_clean = train_fold[(train_fold['target'] == 0) & (train_fold['declared_category'].notna())]
 
-            vec = TfidfVectorizer(max_features=10000, min_df=3)
+            vec = TfidfVectorizer(max_features=10000, min_df=3, ngram_range=(1,2))
             X_train_vec = vec.fit_transform(train_clean['text'])
 
             y_train = train_clean['declared_category']
